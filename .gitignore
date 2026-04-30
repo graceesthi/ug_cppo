@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Données (trop gros, va sur HuggingFace)
+data/fnspid_raw/
+data/*.parquet
+data/*.csv
+
+# Modèles entraînés (trop gros, va sur HuggingFace)
+results/models/*.zip
+results/checkpoints/
+results/tensorboard/
+
+# Logs
+results/logs/
+*.log
+
+# Environnement / secrets
+.env
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp

@@ -1,0 +1,33 @@
+# UG-CPPO: Uncertainty-Gated CVaR-PPO
+# =====================================
+# Core RL & Finance
+finrl>=0.3.6
+stable-baselines3>=2.0.0
+gymnasium>=0.29.0
+
+# Data
+pandas>=2.0.0
+numpy>=1.24.0
+yfinance>=0.2.36
+pyfolio-reloaded>=0.9.5
+
+# LLM APIs
+openai>=1.0.0          # works for DeepSeek (OpenAI-compatible endpoint)
+requests>=2.31.0
+tiktoken>=0.5.0
+
+# ML utilities
+scikit-learn>=1.3.0
+scipy>=1.11.0
+torch>=2.0.0
+
+# Config & logging
+pyyaml>=6.0
+tqdm>=4.66.0
+tensorboard>=2.14.0
+
+# Colab / Notebook
+ipywidgets>=8.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.17.0

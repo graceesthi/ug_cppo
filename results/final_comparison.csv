@@ -1,0 +1,4 @@
+Model,Cumul. Return,Rachev Ratio,Max Drawdown,CVaR (5%),IR,Outperf. Overall,Outperf. Bear
+ppo,93.21%,0.9433,-23.73%,-0.0212,-0.0189,48.37%,51.00%
+cppo,54.30%,0.9242,-18.35%,-0.0183,-0.0305,46.22%,49.80%
+ug_cppo,103.73%,0.9396,-29.52%,-0.0231,-0.0162,48.69%,51.00%

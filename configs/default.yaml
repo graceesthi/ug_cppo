@@ -1,0 +1,77 @@
+# UG-CPPO — Default Configuration
+# =================================
+
+data:
+  train_start:  "2013-01-01"
+  train_end:    "2018-12-31"
+  trade_start:  "2019-01-01"
+  trade_end:    "2023-12-31"
+  fnspid_path:  "data/fnspid_filtered.parquet"
+  ohlcv_path:   "data/ohlcv_nasdaq100.parquet"
+  signals_path: "data/ug_signals.parquet"
+
+# ── LLM ───────────────────────────────────────────────────────────────────────
+# provider: "openai" | "anthropic" | "mock"
+# Recommended:
+#   openai:    gpt-4o-mini  (~$0.15/1M tokens, fast, reliable)
+#   anthropic: claude-haiku-4-5-20251001  (very fast, cheap, excellent instruction-following)
+llm:
+  provider:    "openai"
+  model:       "gpt-4o-mini"
+  max_retries: 3
+  retry_delay: 2.0
+  timeout:     30
+
+# Anthropic alternative (uncomment to use):
+# llm:
+#   provider: "anthropic"
+#   model:    "claude-haiku-4-5-20251001"
+
+# ── Uncertainty Gate ──────────────────────────────────────────────────────────
+uncertainty:
+  n_prompts:       5      # ensemble size: recommendation prompts
+  n_risk_prompts:  4      # ensemble size: risk prompts
+  threshold_tau:   0.30   # c(σ) < τ → gate fires, signal suppressed
+  cache_signals:   true
+
+# ── UG-CPPO Agent ─────────────────────────────────────────────────────────────
+agent:
+  algorithm:         "ug_cppo"   # ug_cppo | cppo | ppo
+  infusion_strength: 0.10        # α: max Sf/Rf perturbation
+  learning_rate:     3.0e-4
+  n_steps:           2048
+  batch_size:        256
+  n_epochs:          10
+  gamma:             0.99
+  gae_lambda:        0.95
+  clip_range:        0.20
+  ent_coef:          0.01
+  vf_coef:           0.50
+  max_grad_norm:     0.50
+  cvar_alpha:        0.05        # worst 5% of trajectories
+  cvar_lambda:       0.10
+  cvar_beta:         0.00
+
+# ── Training ──────────────────────────────────────────────────────────────────
+training:
+  total_timesteps:  2_000_000   # 100 epochs × 20k steps (full run)
+  n_seeds:          3
+  eval_freq:        20_000
+  save_freq:        100_000
+  log_dir:          "results/logs"
+  model_dir:        "results/models"
+  tensorboard_dir:  "results/tensorboard"
+
+# ── Environment ───────────────────────────────────────────────────────────────
+env:
+  initial_amount:   1_000_000
+  hmax:             100
+  transaction_cost: 0.001
+  reward_scaling:   1.0e-4
+
+# ── Ablation ──────────────────────────────────────────────────────────────────
+ablation:
+  n_prompts:         [1, 3, 5]
+  threshold_tau:     [0.0, 0.2, 0.3, 0.5]
+  infusion_strength: [0.01, 0.05, 0.10]
+  n_timesteps:       500_000

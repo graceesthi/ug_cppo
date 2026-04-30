@@ -1,0 +1,86 @@
+{
+  "config": {
+    "llm_provider": "openai",
+    "llm_model": "gpt-4o-mini",
+    "tickers": [
+      "AAPL",
+      "AMD",
+      "AMZN",
+      "COST",
+      "GOOGL",
+      "META",
+      "MSFT",
+      "NFLX",
+      "NVDA",
+      "TSLA"
+    ],
+    "total_steps": 250000,
+    "threshold_tau": 0.4,
+    "seed": 42,
+    "n_signals": 55360
+  },
+  "reports": [
+    {
+      "model": "ppo",
+      "cumulative_return": 0.9320837435507048,
+      "rachev_ratio": 0.9433074803681278,
+      "max_drawdown": -0.23728599262966615,
+      "cvar": -0.021221525402046932,
+      "final_value": 1932083.7435507048,
+      "n_days": 1257,
+      "information_ratio": -0.018938001347208952,
+      "benchmark_cumret": 1.7325991416002893,
+      "outperformance_frequency": {
+        "overall": 0.48369132856006364,
+        "bull": 0.4663143989431968,
+        "bear": 0.51
+      }
+    },
+    {
+      "model": "cppo",
+      "cumulative_return": 0.542988749385939,
+      "rachev_ratio": 0.9242161431272674,
+      "max_drawdown": -0.183493727372408,
+      "cvar": -0.018267534403628754,
+      "final_value": 1542988.749385939,
+      "n_days": 1257,
+      "information_ratio": -0.030507804479754565,
+      "benchmark_cumret": 1.7325991416002893,
+      "outperformance_frequency": {
+        "overall": 0.462211614956245,
+        "bull": 0.4385733157199472,
+        "bear": 0.498
+      }
+    },
+    {
+      "model": "ug_cppo",
+      "cumulative_return": 1.0372654401512165,
+      "rachev_ratio": 0.93955277610282,
+      "max_drawdown": -0.2951605609816916,
+      "cvar": -0.023102515257808542,
+      "final_value": 2037265.4401512165,
+      "n_days": 1257,
+      "information_ratio": -0.016159176678220616,
+      "benchmark_cumret": 1.7325991416002893,
+      "outperformance_frequency": {
+        "overall": 0.48687350835322196,
+        "bull": 0.4715984147952444,
+        "bear": 0.51
+      }
+    }
+  ],
+  "diagnostics": {
+    "ppo": {
+      "mean_|a|": 0.8805524110794067,
+      "gate_rate": 0.0
+    },
+    "cppo": {
+      "mean_|a|": 0.7263402938842773,
+      "gate_rate": 0.0
+    },
+    "ug_cppo": {
+      "mean_|a|": 0.8927540183067322,
+      "gate_rate": 0.34216388225934763
+    }
+  }
+}
