@@ -40,7 +40,7 @@ gate fires when c(σ) < τ → Sf = 1.0      ← signal suppressed
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Install
 
@@ -81,7 +81,7 @@ python scripts/evaluate.py
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```
 ug_cppo/
@@ -109,7 +109,7 @@ ug_cppo/
 
 ---
 
-## 🔬 Reproducibility
+##  Reproducibility
 
 ### Hardware used
 - **Compute**: Apple M-series (CPU only, no GPU)
@@ -133,7 +133,7 @@ All experiments use seed=42. Multi-seed robustness analysis is listed as future 
 
 ---
 
-## 📊 What the Numbers Mean
+##  What the Numbers Mean
 
 The Rachev ratio is the contest's primary risk metric: it measures **expected tail gain over expected tail loss** at the 5% confidence level. Higher = better gain/loss asymmetry.
 
@@ -145,7 +145,7 @@ UG-CPPO achieves:
 
 ---
 
-## 📚 Citation
+##  Citation
 
 ```bibtex
 @inproceedings{dong2026ugcppo,
@@ -190,23 +190,22 @@ UG-CPPO achieves:
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 This is a research repository for a contest submission, not actively maintained for production use. Issues and discussion are welcome. For follow-up work, please cite the paper.
 
 ---
 
-## 📄 License
+##  License
 
 MIT License — see [LICENSE](./LICENSE) for details.
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **Mostapha Benhenda** — FinRL-DeepSeek baseline
 - **AI4Mammography team** — for the prior medical imaging research that grounds this work conceptually
-- **OpenAI gpt-4o-mini** — for cost-efficient signal generation
 
 ---
 
