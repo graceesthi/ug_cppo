@@ -13,7 +13,7 @@
 
 ---
 
-## 🎯 Key Results (v11, 500k steps, real OpenAI gpt-4o-mini signals)
+##  Key Results (v11, 500k steps, real OpenAI gpt-4o-mini signals)
 
 | Model | Cumul. Return | Rachev Ratio | Max Drawdown | Outperf. Bear | Mean \|a\| |
 |:------|:-------------:|:------------:|:------------:|:-------------:|:--------:|
@@ -26,7 +26,7 @@
 
 ---
 
-## 🧠 The Idea in 3 Lines
+##  The Idea in 3 Lines
 
 1. **Problem**: FinRL-DeepSeek (Benhenda 2025) shows LLM signal infusion *degrades* RL trading performance because the agent treats every LLM output as deterministic.
 2. **Insight from medical imaging**: Monte Carlo Dropout in our prior breast cancer detection work [(IABM 2026)](https://hal.science/hal-05561689v2) shows that epistemic uncertainty must gate downstream decisions.
