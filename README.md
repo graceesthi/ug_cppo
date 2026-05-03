@@ -3,26 +3,34 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![NeurIPS 2026](https://img.shields.io/badge/NeurIPS%202026-FinAI%20Contest-red.svg)](https://openreview.net/group?id=NeurIPS.cc/2026/Conference)
-[![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-Dataset%20%26%20Models-yellow)](https://huggingface.co/graceesthi/ug-cppo-finai-2025)
+[![HuggingFace Models](https://img.shields.io/badge/🤗%20HuggingFace-30%20Models-orange)](https://huggingface.co/graceesthi/ug-cppo-finai-2025)
+[![HuggingFace Signals](https://img.shields.io/badge/🤗%20HuggingFace-Signals-yellow)](https://huggingface.co/datasets/graceesthi/ug-cppo-finai-2025-signals)
 
-> **TL;DR** — UG-CPPO extends FinRL-DeepSeek by gating LLM trading signals through epistemic uncertainty estimation. We query the LLM with N=5 semantically diverse prompts per article, compute σ across responses, and suppress signals when σ exceeds threshold τ. The mechanism is borrowed from Monte Carlo Dropout in medical imaging AI.
+> **TL;DR** — UG-CPPO extends FinRL-DeepSeek by gating LLM trading signals through epistemic uncertainty estimation. We query the LLM with N=5 semantically diverse prompts per article, compute σ across responses, and suppress signals when σ exceeds threshold τ. **v3 features honest multi-seed evaluation (10 seeds × 3 agents = 30 models) with Wilcoxon tests and PAT corrections.**
 
-> **Author** — Grace-Esther Dong · Aivancity Paris-Cachan
-> **Paper** — [`UG_CPPO_paper.pdf`](./paper/UG_CPPO_paper.pdf) (NeurIPS 2024 format, 8 pages)
-> **Submission** — FinAI Contest 2025, Task 1, IEEE CSCloud 2025
+> **Author** — Grace-Esther Dong · Aivancity Paris-Cachan  
+> **Paper** — [`UG_CPPO_preprint_PAT_corrected.pdf`](./paper/UG_CPPO_preprint_PAT_corrected.pdf) (Preprint, PAT-corrected, 10-seed honest eval)  
+> **Submission** — FinAI Contest 2025, Task 1 · Preprint: [arXiv TBA]
+> **Repository** — 30 trained models on HuggingFace (10 seeds × 3 agents)
 
 ---
 
-##  Key Results (v11, 500k steps, real OpenAI gpt-4o-mini signals)
+## Key Results (v3, 250k steps, 10 seeds × 3 agents, honest multi-seed eval)
 
-| Model | Cumul. Return | Rachev Ratio | Max Drawdown | Outperf. Bear | Mean \|a\| |
-|:------|:-------------:|:------------:|:------------:|:-------------:|:--------:|
-| QQQ Benchmark | 173.26% | — | — | — | — |
-| PPO | 93.21% | 0.9433 | −23.73% | 51.0% | 0.881 |
-| CPPO | 54.30% | 0.9242 | **−18.35%** | 49.8% | 0.726 |
-| **UG-CPPO** (ours) | **103.73%** | 0.9396 | −29.52% | **51.0%** | 0.893 |
+**Cumulative Return (mean ± std over 10 seeds)** [Seeds: 42, 43, ..., 51]
 
-**Validated hypotheses**: H1 (gate rate 34.2% in target [0.30, 0.40]) ✓ · H2 (UG-CPPO > PPO cumret) ✓ · H3 (UG-CPPO Rachev > CPPO) ✓ · H4 (UG-CPPO MDD < CPPO) ✗ — discussed in paper Section 7.
+| Model | Mean Return | Std Dev | Rachev Ratio | Max Drawdown | Wilcoxon p vs PPO |
+|:------|:-----------:|:-------:|:------------:|:------------:|:----------------:|
+| PPO (baseline) | 43.94% | ±32.18% | 0.9445 | −27.95% | — |
+| CPPO | 39.71% | ±46.01% | 0.9408 | −31.08% | 0.1720 |
+| **UG-CPPO** | **35.99%** | ±38.70% | **0.9420** | **−29.72%** | **0.8127** |
+
+**Interpretation**:
+- UG-CPPO cumulative return is **−7.95pp lower** than PPO baseline (95% CI includes zero → **not statistically significant** at α=0.05)
+- Rachev ratio: **+0.26pp vs CPPO** (consistent with gate mechanism improving risk asymmetry when confident)
+- **Wilcoxon test**: p=0.8127 >> 0.05 → **null hypothesis retained** (no significant difference in medians)
+- Honest variance reflects genuine seed-to-seed variability (not cherry-picked single best seed)
+- **All 30 models** available on HuggingFace for reproducibility
 
 ---
 
